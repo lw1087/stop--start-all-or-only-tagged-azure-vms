@@ -1,0 +1,20 @@
+{
+    "Author": "Farouk Friha",
+    "ContentSize": 6500,
+    "ContentUrl": "https://raw.githubusercontent.com/azureautomation/stop--start-all-or-only-tagged-azure-vms/master/StopStartVMs.ps1",
+    "DownloadCount": 5142,
+    "Id": "Az-Stop-Start-all-or-only-8a8fcab4",
+    "IsFederated": false,
+    "IsWorkflow": false,
+    "Popularity": 8,
+    "RaterCount": 0,
+    "Rating": 0.0,
+    "ReleaseDate": "2019-5-19T00:00:00",
+    "RunbookKind": 5,
+    "RunbookKindString": "PowerShell",
+    "Summary": "This PowerShell Runbook (compatible with PowerShell Core) connects to Azure using an Automation Run As account, retrieves the power status of VMs and turns off / on in sequence those that are turned on / off. You can attach a recurring schedule to this runbook to run it at a spec",
+    "Title": "Stop / Start all or only tagged Azure VMs",
+    "UpdatedDate": "2019-5-21T00:00:00",
+    "Url": "https://github.com/azureautomation/stop--start-all-or-only-tagged-azure-vms",
+    "UserTags": "Microsoft Azure, Powershell, Azure Automation"
+}
