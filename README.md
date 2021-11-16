@@ -51,6 +51,8 @@ Farouk FRIHA
 
 2019-19-05 Handle changes to parameters
 
+2021-16-11 Corrected issue in line 21, changed parameter to shutdown to bolean and adjust variables
+
 
 **RUNBOOK CONTENT**
 
