@@ -1,13 +1,13 @@
 param (
 
     [Parameter(Mandatory=$true)]  
-    [String] $Action,
-
-    [Parameter(Mandatory=$false)]  
     [String] $TagName,
 
-    [Parameter(Mandatory=$false)]
-    [String] $TagValue
+    [Parameter(Mandatory=$true)]
+    [String] $TagValue,
+
+    [Parameter(Mandatory=$true)]
+    [Boolean] $Shutdown
 ) 
 
 ## Authentication
@@ -122,7 +122,7 @@ $runningInstances = ($resourceGroupsContent | Where-Object {$_.("Instance state"
 $deallocatedInstances = ($resourceGroupsContent | Where-Object {$_.("Instance state") -eq "Deallocated" -or $_.("Instance state") -eq "Deallocating"})
 
 ## Updating virtual machines power state
-if (($runningInstances) -and ($Action -eq "Stop"))
+if (($runningInstances) -and ($Shutdown -eq "Stop"))
 {
     Write-Output "--------------------------- Updating ---------------------------"
     Write-Output "Trying to stop virtual machines ..."
@@ -159,7 +159,7 @@ if (($runningInstances) -and ($Action -eq "Stop"))
         throw $_.Exception    
     }
 }
-elseif (($deallocatedInstances) -and ($Action -eq "Start"))
+elseif (($deallocatedInstances) -and ($Shutdown -eq "Start"))
 {
     Write-Output "--------------------------- Updating ---------------------------"
     Write-Output "Trying to start virtual machines ..."
