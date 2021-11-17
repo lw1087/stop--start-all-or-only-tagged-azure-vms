@@ -40,7 +40,7 @@ Farouk FRIHA
 **LAST EDIT**
 
 
-2021-16-11
+2021-17-11
 
 
 **RELEASE NOTES**
@@ -50,7 +50,9 @@ Farouk FRIHA
 
 2019-19-05 Handle changes to parameters
 
-2021-16-11 Corrected issue in line 21, changed parameter to shutdown to bolean and adjust variables
+2021-16-11 Corrected issue in line 21, changed parameter shutdown to bolean and adjust variables
+
+2021-17-11 Rollback changed parameter to string and add comment to help when create schedule
 
 
 **RUNBOOK CONTENT**
