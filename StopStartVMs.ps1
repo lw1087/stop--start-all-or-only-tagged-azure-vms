@@ -1,13 +1,12 @@
 param (
-
     [Parameter(Mandatory=$true)]  
     [String] $TagName,
 
     [Parameter(Mandatory=$true)]
     [String] $TagValue,
-
-    [Parameter(Mandatory=$true)]
-    [Boolean] $Shutdown
+	
+	[Parameter(Mandatory=$true)]  
+    [String] $Action = "Start or Stop"
 ) 
 
 ## Authentication
@@ -18,7 +17,7 @@ Write-Output "Logging into Azure ..."
 try
 {
     # Ensures you do not inherit an AzContext in your runbook
-    $null = Disable-AzContextAutosave –Scope Process
+    $null = Disable-AzContextAutosave -Scope Process
 
     $Conn = Get-AutomationConnection -Name AzureRunAsConnection
     
@@ -30,6 +29,7 @@ try
 
     Write-Output "Successfully logged into Azure." 
 } 
+
 catch
 {
     if (!$Conn)
@@ -122,7 +122,7 @@ $runningInstances = ($resourceGroupsContent | Where-Object {$_.("Instance state"
 $deallocatedInstances = ($resourceGroupsContent | Where-Object {$_.("Instance state") -eq "Deallocated" -or $_.("Instance state") -eq "Deallocating"})
 
 ## Updating virtual machines power state
-if (($runningInstances) -and ($Shutdown -eq "Stop"))
+if (($runningInstances) -and ($Action -eq "Stop"))
 {
     Write-Output "--------------------------- Updating ---------------------------"
     Write-Output "Trying to stop virtual machines ..."
@@ -159,7 +159,7 @@ if (($runningInstances) -and ($Shutdown -eq "Stop"))
         throw $_.Exception    
     }
 }
-elseif (($deallocatedInstances) -and ($Shutdown -eq "Start"))
+elseif (($deallocatedInstances) -and ($Action -eq "Start"))
 {
     Write-Output "--------------------------- Updating ---------------------------"
     Write-Output "Trying to start virtual machines ..."
@@ -193,7 +193,7 @@ elseif (($deallocatedInstances) -and ($Shutdown -eq "Start"))
     catch
     {
         Write-Error -Message $_.Exception
-        throw $_.Exception    
+        throw $_.Exception
     }
 }
 #### End of updating virtual machines power state
